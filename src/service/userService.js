@@ -1,23 +1,12 @@
-const mongoose = require("mongoose");
-const db = require("./db");
+const User = require("../data/userData");
+const bcrypt = require("bcrypt");
 
-
-db.connect();
-
-// Définition du modèle User
-const User = mongoose.model('User', new mongoose.Schema({
-    nom: String,
-    adressePostale: String,
-    email: String,
-    mdp: String,
-}));
-
-//todo ajouter hashage du mot de passe
 
 // Fonction pour ajouter un nouvel utilisateur
 const addUser = async (req, res) => {
     try {
-        const { nom, adressePostale, email, mdp } = req.body; // Récupérer les données depuis la requête
+        let { nom, adressePostale, email, mdp } = req.body; // Récupérer les données depuis la requête
+        mdp = await bcrypt.hash(mdp, 10);
 
         // Vérifier si l'email existe déjà (évite les doublons)
         const existingUser = await User.findOne({ email });
@@ -34,7 +23,7 @@ const addUser = async (req, res) => {
         res.status(201).json({ message: "Utilisateur ajouté avec succès"});
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Erreur serveur", error });
+        res.status(500).json({ message: "Echec de l'enregistrement de l'utilisateur", error });
     }
 };
 

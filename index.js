@@ -1,26 +1,41 @@
 const express = require('express')
-const rhumsData = require("./src/data/rhumsData");
-const usersData = require("./src/data/usersData");
+const db = require("./src/data/db");
+const rhumsService = require("./src/service/rhumService");
+const usersService = require("./src/service/userService");
+const ingredientService = require("./src/service/ingredientService");
 const app = express()
 const port = 3000
 
 app.use(express.json());
+db.connect();
 
-
-app.get('/rhum/connexion', async (req, res) => {
+app.get('/user/connexion', async (req, res) => {
     res.send('page connexion');
 });
 
-app.post('/rhum/inscription', async (req, res) => {
-    usersData.addUser(req, res);
-    //res.send('page inscription');
+app.post('/user/inscription', async (req, res) => {
+    usersService.addUser(req, res);
+});
+
+app.post('/ingredient/ajout', async (req, res) => {
+    ingredientService.addIngredient(req, res);
+});
+
+app.get('/ingredient/search', async (req, res) => {
+    ingredientService.searchIngredient(req, res);
+});
+
+app.get('/ingredient', async (req, res) => {
+    ingredientService.getAllIngredients(req, res);
+});
+
+app.get('/rhum/search', async (req, res) => {
+    rhumsService.searchRhum(req, res);
 });
 
 app.get('/rhum', async (req, res) => {
-    rhumsData.getAllRhums(res);
+    rhumsService.getAllRhums(req, res);
 });
-
-
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
