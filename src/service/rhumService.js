@@ -1,4 +1,4 @@
-const Rhum = require("../data/rhumData");
+const Rhum = require("../model/rhum");
 
 async function getAllRhums(req, res) {
 

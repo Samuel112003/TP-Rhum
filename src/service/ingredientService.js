@@ -1,4 +1,4 @@
-const Ingredient = require("../data/ingredientData");
+const Ingredient = require("../model/ingredient");
 
 
 // Fonction pour ajouter un nouvel ingrédient
