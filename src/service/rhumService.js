@@ -27,23 +27,18 @@ async function getAllRhums(req, res) {
 }
 
 async function searchRhum(req, res){
-    const { name, rxid_number, pays, distillerie, ABV, categorie, fabriqueAvec, distillation, age, type, degre, visible, createdAt, updatedAt } = req.query;
     let query = {};
-
-    if (name) {
-        query.name = { $regex: name, $options: 'i' }; // Recherche insensible à la casse
+    for(let key in req.query){
+        if(req.query[key]){
+            query[key] = { $regex: req.query[key].trim(), $options: 'i' };;
+        }//todo certain champ ne passent pas comme pays. pour certain c'est parce que regex ne prend en compte que les string
     }
-    /*if (type) {
-        query.type = { $regex: type, $options: 'i' }; // Recherche insensible à la casse
-    }*/
-
-        //todo à améliorer pour intégrer tous les params de façon propre (ou pas si pas le temps)
 
     try {
         const rhums = await Rhum.find(query);
         res.status(200).json(rhums);
     } catch (error) {
-        res.status(500).json({ message: 'Erreur lors de la recherche des ingrédients', error });
+        res.status(500).json({ message: 'Erreur lors de la recherche des rhums', error });
     }
 }
 
