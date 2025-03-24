@@ -1,31 +1,31 @@
-const Ingredient = require("../model/ingredient");
+const Recette = require("../model/recette");
 const globalService = require("./globalService");
 
 
 // Fonction pour ajouter un nouvel ingrédient
-const addIngredient = async (req, res) => {
+const addRecette = async (req, res) => {
     try {
-        let { nom, type, adresseMagasin, prix } = req.body; // Récupérer les données depuis la requête
+        let { nom, rhum, ingredients, instructions, estPublique } = req.body; // Récupérer les données depuis la requête
 
-        // Vérifier si un trouple nom-type-adresse existe déjà (éviter les doublons)
-        const existingIngredient = await Ingredient.findOne({ nom, type, adresseMagasin });
-        if (existingIngredient) {
-            return res.status(400).json({ message: "Cet ingrédient est déjà utilisé." });
+        // Vérifier si une recette ayant le même nom existe déjà (éviter les doublons)
+        const existingRecette = await Recette.findOne({ nom });
+        if (existingRecette) {
+            return res.status(400).json({ message: "Cette recette existe déjà." });
         }
 
-        // Création du nouvel ingrédient
-        const newIngrdient = new Ingredient({ nom, type, adresseMagasin, prix });
+        // Création de la nouvelle recette
+        const newRecette = new Recette({ nom, rhum, ingredients, instructions, estPublique });
 
         // Sauvegarde dans la BDD
-        await newIngrdient.save();
+        await newRecette.save();
 
-        res.status(201).json({ message: "Ingrédient ajouté avec succès"});
+        res.status(201).json({ message: "Recette ajouté avec succès"});
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Echec de l'enregistrement de l'ingrédient", error });
+        res.status(500).json({ message: "Echec de l'enregistrement de la recette", error });
     }
 };
-
+/*
 async function getAllIngredients(req, res) {
     const { page = 1, limit = 10 } = req.query; // Récupérer les paramètres de requête pour la pagination
 
@@ -50,19 +50,17 @@ async function getAllIngredients(req, res) {
         res.status(500).json({ message: 'Echec de la récupération des ingrédients', error });
     }
 }
-
-
+*/
+/*
 async function searchIngredient(req, res){
     globalService.search(
         req, res, 
         Ingredient, 
         'Erreur lors de la recherche des ingrédients'
     );
-}
+}*/
 
 
 module.exports = {
-    addIngredient,
-    getAllIngredients,
-    searchIngredient
+    addRecette,
 }

@@ -3,6 +3,7 @@ const db = require("./src/data/db");
 const rhumsService = require("./src/service/rhumService");
 const usersService = require("./src/service/userService");
 const ingredientService = require("./src/service/ingredientService");
+const recetteService = require("./src/service/recetteService");
 const app = express()
 const port = 3000
 
@@ -17,7 +18,7 @@ app.post('/user/inscription', async (req, res) => {
     usersService.addUser(req, res);
 });
 
-app.post('/ingredient/ajout', async (req, res) => {
+app.post('/ingredient/add', async (req, res) => {
     ingredientService.addIngredient(req, res);
 });
 
@@ -35,6 +36,10 @@ app.get('/rhum/search', async (req, res) => {
 
 app.get('/rhum', async (req, res) => {
     rhumsService.getAllRhums(req, res);
+});
+
+app.post('/recette/add', async (req, res) => {
+    recetteService.addRecette(req, res);
 });
 
 app.listen(port, () => {
