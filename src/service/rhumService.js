@@ -1,4 +1,5 @@
 const Rhum = require("../model/rhum");
+const globalService = require("./globalService");
 
 async function getAllRhums(req, res) {
 
@@ -27,20 +28,13 @@ async function getAllRhums(req, res) {
 }
 
 async function searchRhum(req, res){
-    let query = {};
-    for(let key in req.query){
-        if(req.query[key]){
-            query[key] = { $regex: req.query[key].trim(), $options: 'i' };;
-        }//todo certain champ ne passent pas comme pays. pour certain c'est parce que regex ne prend en compte que les string
-    }
-
-    try {
-        const rhums = await Rhum.find(query);
-        res.status(200).json(rhums);
-    } catch (error) {
-        res.status(500).json({ message: 'Erreur lors de la recherche des rhums', error });
-    }
+    globalService.search(
+        req, res, 
+        Rhum, 
+        'Erreur lors de la recherche des rhums'
+    );
 }
+
 
 
 module.exports = {

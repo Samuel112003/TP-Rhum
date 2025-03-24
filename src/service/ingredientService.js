@@ -1,4 +1,5 @@
 const Ingredient = require("../model/ingredient");
+const globalService = require("./globalService");
 
 
 // Fonction pour ajouter un nouvel ingrédient
@@ -52,22 +53,11 @@ async function getAllIngredients(req, res) {
 
 
 async function searchIngredient(req, res){
-    const { nom, type } = req.query;
-    let query = {};
-
-    if (nom) {
-        query.nom = { $regex: nom, $options: 'i' }; // Recherche insensible à la casse
-    }
-    if (type) {
-        query.type = { $regex: type, $options: 'i' }; // Recherche insensible à la casse
-    }
-
-    try {
-        const ingredients = await Ingredient.find(query);
-        res.status(200).json(ingredients);
-    } catch (error) {
-        res.status(500).json({ message: 'Erreur lors de la recherche des ingrédients', error });
-    }
+    globalService.search(
+        req, res, 
+        Ingredient, 
+        'Erreur lors de la recherche des ingrédients'
+    );
 }
 
 
