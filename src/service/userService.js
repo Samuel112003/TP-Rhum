@@ -24,7 +24,6 @@ const addUser = async (req, res) => {
 
         res.status(201).json({ message: "Utilisateur ajouté avec succès"});
     } catch (error) {
-        console.log(error);
         res.status(500).json({ message: "Echec de l'enregistrement de l'utilisateur", error });
     }
 };

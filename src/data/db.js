@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const uri = 'mongodb://localhost:27017/rhums';
+const debugDB = require("debug")("database");
 
 // Connexion à MongoDB
 async function connect(){
     mongoose.connect(uri)
-    .then(() => console.log('MongoDB connecté'))
-    .catch(err => console.error('Erreur de connexion à MongoDB:', err));
+    .then(() => debugDB('MongoDB connecté'))
+    .catch(err => debugDB('Erreur de connexion à MongoDB:', err));
 }
 
 

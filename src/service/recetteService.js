@@ -31,7 +31,6 @@ const addRecette = async (req, res) => {
 
         res.status(201).json({ message: "Recette ajouté avec succès"});
     } catch (error) {
-        console.log(error);
         res.status(500).json({ message: "Echec de l'enregistrement de la recette", error });
     }
 };
