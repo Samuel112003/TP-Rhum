@@ -1,5 +1,7 @@
 const User = require("../model/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 
 // Fonction pour ajouter un nouvel utilisateur
@@ -27,7 +29,41 @@ const addUser = async (req, res) => {
     }
 };
 
+const login = async (req, res) => {
+    try {
+        const { email, mdp } = req.body;
+
+        // Vérifier si l'utilisateur existe
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "Utilisateur non trouvé" });
+        }
+
+        // Vérifier si le mot de passe est correct
+        const isMatch = await bcrypt.compare(mdp, user.mdp);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Mot de passe incorrect" });
+        }
+
+        // Générer le token JWT
+        const token = jwt.sign({
+             userId: user._id, 
+             email: user.email 
+            },
+            process.env.JWT_SECRET,
+            { 
+                expiresIn: "1h" 
+            }
+        );
+
+        res.json({ message: "Connexion réussie", token });
+    } catch (error) {
+        res.status(500).json({ message: "Erreur serveur", error });
+    }
+};
+
 
 module.exports = {
-    addUser
+    addUser,
+    login
 }

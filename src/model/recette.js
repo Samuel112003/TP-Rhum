@@ -11,6 +11,10 @@ const Recette = mongoose.model('spr_Recette', new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: "spr_Ingredient" 
     }], // Références aux ingrédients
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "spr_User" 
+    },
     instructions: String,
     estPublique: Boolean
 }));
