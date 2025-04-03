@@ -1,5 +1,10 @@
-const express = require('express')
+require("dotenv").config();
+
+// Importation des modules nécessaires
+const express = require('express');
 const db = require("./src/data/db");
+const debug = require("debug")("server");
+
 
 const rhumRoutes = require("./src/routes/rhumRoutes");
 const ingredientRoutes = require("./src/routes/ingredientRoutes");
@@ -20,7 +25,7 @@ app.use("/recette", recetteRoutes);
 
 
 app.listen(port, () => {
-    console.log(`Rhum app listening on port ${port}`)
+    debug(`Rhum app listening on port ${port}`)
 })
 
 //  http://localhost:3000/
