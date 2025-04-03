@@ -10,7 +10,7 @@ const addIngredient = async (req, res) => {
         // Vérifier si un trouple nom-type-adresse existe déjà (éviter les doublons)
         const existingIngredient = await Ingredient.findOne({ nom, type, adresseMagasin });
         if (existingIngredient) {
-            return res.status(400).json({ message: "Cet ingrédient est déjà utilisé." });
+            return res.status(400).json({ message: "Cet ingrédient existe déjà." });
         }
 
         // Création du nouvel ingrédient
