@@ -1,0 +1,2 @@
+JWT_SECRET=SamPracSuperToken
+DEBUG=server,database node index.js
