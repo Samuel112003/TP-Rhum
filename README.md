@@ -65,3 +65,5 @@ Avant d'utiliser ce projet Node.js, assurez-vous d'avoir les éléments suivants
     
     Pour avoir plus d'informations sur les caractéristiques des différents models (rhum, ingrédient,...), 
     dirigez vous vers le dossier : TP-Rhum\src\model
+
+    Des exemples d'utilisations sont disponibles dans TP-Rhum\test\api\bruno
