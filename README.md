@@ -64,7 +64,7 @@ PUT     /recette/update/:id 	Modifier une recette
 
 
 
-
+------------------------------
 
 
 Pour avoir plus d'informations sur les caractéristiques des différents models (rhum, ingrédient,...), 
