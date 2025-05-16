@@ -67,3 +67,8 @@ Avant d'utiliser ce projet Node.js, assurez-vous d'avoir les éléments suivants
     dirigez vous vers le dossier : TP-Rhum\src\model
 
     Des exemples d'utilisations sont disponibles dans TP-Rhum\test\api\bruno
+
+
+## 5. Amélioration potentielles
+
+La couche controller n'a pour l'instant été faite que pour les routes user et la route principale de rhum 
