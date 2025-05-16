@@ -1,10 +1,10 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-const uri = 'mongodb://localhost:27017/rhums';
 const debugDB = require("debug")("database");
 
 // Connexion à MongoDB
 async function connect(){
-    mongoose.connect(uri)
+    mongoose.connect(process.env.MONGO_URI)
     .then(() => debugDB('MongoDB connecté'))
     .catch(err => debugDB('Erreur de connexion à MongoDB:', err));
 }

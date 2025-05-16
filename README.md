@@ -36,11 +36,8 @@ Avant d'utiliser ce projet Node.js, assurez-vous d'avoir les éléments suivants
 
 ### 3.2 Configurer les variables d’environnement
 
-    Créez un fichier .env à la racine du projet en vous basant sur l'exemple ci-dessous. Vous devrez notamment y renseigner un token et les types de logs (server et database) que vous souhaitez afficher :
-    ```
-        JWT_SECRET=[votre_token]
-        DEBUG=[server,database]
-    ```
+    Créez un fichier .env à la racine du projet en vous basant sur le fichier .env.example. Vous devrez notamment y renseigner l'uri de votre BDD, un token et les types de logs (server et database) que vous souhaitez afficher.
+
 ### 3.3 Lancer le serveur
 
     Une fois tout configuré, lancez simplement le serveur avec :
