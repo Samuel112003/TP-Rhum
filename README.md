@@ -63,6 +63,10 @@ POST    /recette/add 	        Ajouter une nouvelle recette (publique ou privée)
 PUT     /recette/update/:id 	Modifier une recette
 
 
+
+
+
+
 Pour avoir plus d'informations sur les caractéristiques des différents models (rhum, ingrédient,...), 
 dirigez vous vers le dossier : TP-Rhum\src\model
 
