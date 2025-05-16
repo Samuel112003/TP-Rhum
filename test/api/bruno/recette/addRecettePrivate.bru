@@ -1,0 +1,30 @@
+meta {
+  name: addRecettePrivate
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/recette/add
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2U5MjRlZDJmN2JhNTc2MDkwZjE3OTciLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQ3NDA2NjYzLCJleHAiOjE3NDc0MTAyNjN9.r_jxdxk_9karJpsWz1oEy5SvPc4Qgms0AaeGeD58bAw
+}
+
+body:json {
+  {
+        "_id": "67eda5a0e2c9d4b167abf6d4",
+        "nom": "test private",
+        "rhum": "676d0e793c9a1a9bdc1a9b7c",
+        "ingredients": [
+          "67e973f94df25d8560a36903"
+        ],
+        "user": "67e924ed2f7ba576090f1797",
+        "instructions": "Test private",
+        "estPublique": false,
+        "__v": 0
+      }
+}

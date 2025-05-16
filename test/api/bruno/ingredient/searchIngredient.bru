@@ -1,0 +1,19 @@
+meta {
+  name: searchIngredient
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3000/ingredient/search?nom=Banane
+  body: json
+  auth: inherit
+}
+
+params:query {
+  nom: Banane
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2U5MjRlZDJmN2JhNTc2MDkwZjE3OTciLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQ3NDA2NjYzLCJleHAiOjE3NDc0MTAyNjN9.r_jxdxk_9karJpsWz1oEy5SvPc4Qgms0AaeGeD58bAw
+}

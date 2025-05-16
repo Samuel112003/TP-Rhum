@@ -1,0 +1,15 @@
+meta {
+  name: getAllRhums
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/rhum/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2U5MjRlZDJmN2JhNTc2MDkwZjE3OTciLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQ3NDA2NjYzLCJleHAiOjE3NDc0MTAyNjN9.r_jxdxk_9karJpsWz1oEy5SvPc4Qgms0AaeGeD58bAw
+}
